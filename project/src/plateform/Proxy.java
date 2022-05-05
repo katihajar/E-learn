@@ -102,37 +102,44 @@ public InternetImpl imp = new InternetImpl();
 	public void CheckadminLogin() throws IOException {
 	conn =Mysqlconnect.connectdb();
 	String sql="SELECT * FROM `admin` WHERE `Username`=? AND `Password`=?";
-	try {
-		pst =conn.prepareStatement(sql);
-		pst.setString(1,username.getText().toString());
-		pst.setString(2,password.getText().toString());
-		rs= pst.executeQuery();
-		if(rs.next()){
-			System.out.println("ana hna");
-			InternetImpl imp2 = new InternetImpl();
-			imp2.CheckadminLogin();
+		if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+			JOptionPane.showMessageDialog(null, "insert username and password");
 		}else {
-			JOptionPane.showMessageDialog(null, "invalid Username and password ");
-		}
-	}catch (Exception e){
-		JOptionPane.showMessageDialog(null, e);
+			try {
+				pst = conn.prepareStatement(sql);
+				pst.setString(1, username.getText().toString());
+				pst.setString(2, password.getText().toString());
+				rs = pst.executeQuery();
+				if (rs.next()) {
+					System.out.println("ana hna");
+					imp.CheckadminLogin();
+				} else {
+					JOptionPane.showMessageDialog(null, "invalid Username and password ");
+				}
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, e);
+			}
 		}
 	}
 	 public void CheckStudentLogin() throws IOException {
 		 conn =Mysqlconnect.connectdb();
 		 String sql="SELECT * FROM `student` WHERE `Username`=? AND `Password`=?";
-		 try {
-			 pst =conn.prepareStatement(sql);
-			 pst.setString(1,username.getText().toString());
-			 pst.setString(2,password.getText().toString());
-			 rs= pst.executeQuery();
-			 if(rs.next()){
-				 imp.CheckadminLogin();
-			 }else {
-				 JOptionPane.showMessageDialog(null, "invalid Username and password ");
+		 if (username.getText().toString().isEmpty() || password.getText().toString().isEmpty()){
+			 JOptionPane.showMessageDialog(null, "insert username and password");
+		 }else {
+			 try {
+				 pst = conn.prepareStatement(sql);
+				 pst.setString(1, username.getText().toString());
+				 pst.setString(2, password.getText().toString());
+				 rs = pst.executeQuery();
+				 if (rs.next()) {
+					 imp.CheckStudentLogin();
+				 } else {
+					 JOptionPane.showMessageDialog(null, "invalid Username and password ");
+				 }
+			 } catch (Exception e) {
+				 JOptionPane.showMessageDialog(null, e);
 			 }
-		 }catch (Exception e){
-			 JOptionPane.showMessageDialog(null, e);
 		 }
 	}
 
