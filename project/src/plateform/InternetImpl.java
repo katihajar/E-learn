@@ -9,9 +9,10 @@ public class InternetImpl implements Plateform {
 
 	@Override
 	public void CheckadminLogin() throws IOException {
+		System.out.println("dkhalna");
 		Main m = new Main();
 		JOptionPane.showMessageDialog(null, "Username and password correct");
-		m.changeScene("afterLogin.fxml");
+		m.changeScene("adminPlatform.fxml");
 	}
 
 	@Override

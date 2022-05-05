@@ -3,8 +3,8 @@ package plateform;
 import java.io.IOException;
 
 public interface Plateform {
-	public void CheckadminLogin() throws IOException;
-	public void CheckStudentLogin() throws IOException;
-	public void RegistreStudent() throws IOException;
+	 void CheckadminLogin() throws IOException;
+	 void CheckStudentLogin() throws IOException;
+	void RegistreStudent() throws IOException;
 
 }

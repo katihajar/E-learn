@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,7 +54,17 @@ public class Proxy implements Plateform{
 	private TextField Email;
 	@FXML
 	private Button logout;
+	@FXML
+	private Button CourseNew;
 
+	@FXML
+	private Button NewExam;
+
+	@FXML
+	private AnchorPane CoursePanel;
+
+	@FXML
+	private AnchorPane ExamPanel;
 
 
 	Connection conn=null;
@@ -72,6 +81,11 @@ public InternetImpl imp = new InternetImpl();
 	@FXML
 	void SignupAction(ActionEvent event) throws IOException{
 		RegistreStudent();
+	}
+	@FXML
+	void Retour(ActionEvent event) throws IOException{
+		in.setVisible(true);
+		up.setVisible(false);
 	}
 	@FXML
 	void StudentLogin(ActionEvent event) throws IOException {
@@ -94,7 +108,9 @@ public InternetImpl imp = new InternetImpl();
 		pst.setString(2,password.getText().toString());
 		rs= pst.executeQuery();
 		if(rs.next()){
-			imp.CheckadminLogin();
+			System.out.println("ana hna");
+			InternetImpl imp2 = new InternetImpl();
+			imp2.CheckadminLogin();
 		}else {
 			JOptionPane.showMessageDialog(null, "invalid Username and password ");
 		}
@@ -123,36 +139,50 @@ public InternetImpl imp = new InternetImpl();
 	public void RegistreStudent() throws IOException {
 		conn = Mysqlconnect.connectdb();
 		String sql = "INSERT INTO `student` (`FirstName`, `LastName`, `Username`, `Password`, `Email`) VALUES (?, ?, ?, ?, ?)";
-		try {
-			String test = "SELECT * FROM `student` WHERE `Username`=? AND `Password`=?";
+		if(UsernameSignup.getText().toString().isEmpty() || PasswordSignup.getText().toString().isEmpty() || FirstName.getText().toString().isEmpty() || LastName.getText().toString().isEmpty() || Email.getText().toString().isEmpty()  ){
+			JOptionPane.showMessageDialog(null, "insert data");
+		}else {
 			try {
-				pst = conn.prepareStatement(test);
-				pst.setString(1, UsernameSignup.getText().toString());
-				pst.setString(2, PasswordSignup.getText().toString());
-				rs = pst.executeQuery();
-				if (rs.next()) {
-					JOptionPane.showMessageDialog(null, "user exist");
-				} else {
-					pst = conn.prepareStatement(sql);
-					pst.setString(1, FirstName.getText().toString());
-					pst.setString(2, LastName.getText().toString());
-					pst.setString(3, UsernameSignup.getText().toString());
-					pst.setString(4, PasswordSignup.getText().toString());
-					pst.setString(5, Email.getText().toString());
-					pst.execute();
-					imp.RegistreStudent();
-					up.setVisible(false);
-					in.setVisible(true);
+				String test = "SELECT * FROM `student` WHERE `Username`=? AND `Password`=?";
+				try {
+					pst = conn.prepareStatement(test);
+					pst.setString(1, UsernameSignup.getText().toString());
+					pst.setString(2, PasswordSignup.getText().toString());
+					rs = pst.executeQuery();
+					if (rs.next()) {
+						JOptionPane.showMessageDialog(null, "user exist");
+					} else {
+						pst = conn.prepareStatement(sql);
+						pst.setString(1, FirstName.getText().toString());
+						pst.setString(2, LastName.getText().toString());
+						pst.setString(3, UsernameSignup.getText().toString());
+						pst.setString(4, PasswordSignup.getText().toString());
+						pst.setString(5, Email.getText().toString());
+						pst.execute();
+						imp.RegistreStudent();
+						up.setVisible(false);
+						in.setVisible(true);
 
+					}
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
 				}
+
+
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, e);
 			}
-
-
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e);
 		}
 	}
+	@FXML
+	void FormCours(ActionEvent event) {
+		CoursePanel.setVisible(true);
+		ExamPanel.setVisible(false);
+	}
 
+	@FXML
+	void FormExam(ActionEvent event) {
+		CoursePanel.setVisible(false);
+		ExamPanel.setVisible(true);
+	}
 }
