@@ -26,7 +26,7 @@
                                     <children>
                                         <ImageView fitHeight="34.0" fitWidth="55.0">
                                             <image>
-                                                <Image url="@../img/2back.jpg" />
+                                                <Image url="@../img/learn.png" />
                                             </image>
                                             <HBox.margin>
                                                 <Insets left="10.0" />
