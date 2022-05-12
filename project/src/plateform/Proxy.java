@@ -17,6 +17,34 @@ import javax.swing.*;
 
 public class Proxy implements Plateform{
 	@FXML
+	private Button stdlogout;
+
+	@FXML
+	private Button stdCourse;
+
+	@FXML
+	private Button stdbuttonMsg;
+
+	@FXML
+	private Button stdbuttonCald;
+
+	@FXML
+	private Button stdbuttonNotif;
+
+	@FXML
+	private AnchorPane stdCoursePanel;
+
+	@FXML
+	private AnchorPane stdCalendarPanel;
+
+	@FXML
+	private AnchorPane stdMessagePanel;
+
+	@FXML
+	private AnchorPane NotifPanel;
+
+
+	@FXML
 	private Button buttonMsg;
 
 	@FXML
@@ -218,5 +246,43 @@ public InternetImpl imp = new InternetImpl();
 		CoursePanel.setVisible(false);
 		ExamPanel.setVisible(false);
 		CalendarPanel.setVisible(false);
+	}
+	@FXML
+	void StdLogOut(ActionEvent event) throws IOException{
+		Main n = new Main();
+		n.changeScene("sample.fxml");
+	}
+
+	@FXML
+	void stdPageCours(ActionEvent event) {
+		stdCoursePanel.setVisible(true);
+		stdCalendarPanel.setVisible(false);
+		stdMessagePanel.setVisible(false);
+		NotifPanel.setVisible(false);
+	}
+
+	@FXML
+	void stdpageCld(ActionEvent event) {
+		stdCalendarPanel.setVisible(true);
+		stdCoursePanel.setVisible(false);
+		stdMessagePanel.setVisible(false);
+		NotifPanel.setVisible(false);
+
+	}
+
+	@FXML
+	void stdpageCldNotif(ActionEvent event) {
+		NotifPanel.setVisible(true);
+		stdCalendarPanel.setVisible(false);
+		stdCoursePanel.setVisible(false);
+		stdMessagePanel.setVisible(false);
+
+	}
+	@FXML
+	void stdpageMsg(ActionEvent event) {
+		stdMessagePanel.setVisible(true);
+		NotifPanel.setVisible(false);
+		stdCalendarPanel.setVisible(false);
+		stdCoursePanel.setVisible(false);
 	}
 }

@@ -18,7 +18,7 @@ public class InternetImpl implements Plateform {
 	@Override
 	public void CheckStudentLogin() throws IOException {
 		Main m = new Main();
-		m.changeScene("afterLogin.fxml");
+		m.changeScene("studentPlateform.fxml");
 	}
 
 	@Override

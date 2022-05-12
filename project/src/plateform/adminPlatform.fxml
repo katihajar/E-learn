@@ -139,7 +139,7 @@
                                         </Button>
                                     </children>
                                 </VBox>
-                                <AnchorPane fx:id="CoursePanel" layoutX="181.0" layoutY="34.0" prefHeight="458.0" prefWidth="610.0" visible="false">
+                                <AnchorPane fx:id="CoursePanel" layoutX="181.0" layoutY="34.0" prefHeight="458.0" prefWidth="610.0" >
                                     <children>
                                         <TabPane prefHeight="458.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE">
                                             <tabs>
@@ -323,7 +323,7 @@
                                         </TabPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="MessagePanel" layoutX="180.0" layoutY="34.0" prefHeight="458.0" prefWidth="610.0">
+                                <AnchorPane fx:id="MessagePanel" layoutX="180.0" layoutY="34.0" prefHeight="458.0" visible="false" prefWidth="610.0">
                                     <children>
                                         <TabPane layoutX="-6.0" prefHeight="458.0" prefWidth="616.0" tabClosingPolicy="UNAVAILABLE">
                                             <tabs>
