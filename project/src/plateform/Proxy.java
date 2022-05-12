@@ -17,6 +17,11 @@ import javax.swing.*;
 
 public class Proxy implements Plateform{
 	@FXML
+	private Button buttonMsg;
+
+	@FXML
+	private Button buttonCald;
+	@FXML
 	private AnchorPane in;
 	@FXML
 	private AnchorPane up;
@@ -65,7 +70,11 @@ public class Proxy implements Plateform{
 
 	@FXML
 	private AnchorPane ExamPanel;
+	@FXML
+	private AnchorPane CalendarPanel;
 
+	@FXML
+	private AnchorPane MessagePanel;
 
 	Connection conn=null;
 	ResultSet rs =null;
@@ -189,7 +198,25 @@ public InternetImpl imp = new InternetImpl();
 
 	@FXML
 	void FormExam(ActionEvent event) {
-		CoursePanel.setVisible(false);
 		ExamPanel.setVisible(true);
+		CoursePanel.setVisible(false);
+		MessagePanel.setVisible(false);
+		CalendarPanel.setVisible(false);
+	}
+	@FXML
+	void pageCld(ActionEvent event) {
+		CalendarPanel.setVisible(true);
+		CoursePanel.setVisible(false);
+		ExamPanel.setVisible(false);
+		MessagePanel.setVisible(false);
+
+	}
+
+	@FXML
+	void pageMsg(ActionEvent event) {
+		MessagePanel.setVisible(true);
+		CoursePanel.setVisible(false);
+		ExamPanel.setVisible(false);
+		CalendarPanel.setVisible(false);
 	}
 }
